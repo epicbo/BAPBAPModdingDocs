@@ -1,0 +1,12 @@
+site_name: Bapbap Modding Wiki
+site_description: Community documentation for modding Bapbap
+repo_url: https://github.com/epicbo/BAPBAPModdingDocs
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Overview: getting-started/overview.md
+  - Guides:
+      - Augments: guides/augments.md
