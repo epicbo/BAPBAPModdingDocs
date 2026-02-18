@@ -1,5 +1,5 @@
-site_name: Bapbap Modding Wiki
-site_description: Community documentation for modding Bapbap
+site_name: Bapbap Modding Docs
+site_description: Documentation for modding Bapbap
 repo_url: https://github.com/epicbo/BAPBAPModdingDocs
 theme:
   name: material
@@ -10,3 +10,9 @@ nav:
       - Overview: getting-started/overview.md
   - Guides:
       - Augments: guides/augments.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite

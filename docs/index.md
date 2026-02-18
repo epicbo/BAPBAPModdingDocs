@@ -1,3 +1,3 @@
-# Welcome to the BAPBAP modding wiki
+# Welcome to the BAPBAP modding docs
 
 TODO
