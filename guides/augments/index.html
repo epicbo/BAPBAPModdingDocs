@@ -612,7 +612,7 @@
 <li><em>wildCardRareAugmentTree</em>: Not 100% sure what the deal is with this one, but I guess it was used in another game mode. The game seems to pick a Wildcard augment from either of them (if it can't find a valid augment in one of the wildcard trees, it will just select the other). Might as well add wildcard augments to this one just to be sure.</li>
 </ul>
 <p>Here's what the code could look like (I went with adding the augment to the <em>Starter</em> pool).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="na">[HarmonyPatch(typeof(PassiveManager), nameof(PassiveManager.PreAwake))]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="na">[HarmonyPatch(typeof(AugmentManager), nameof(AugmentManager.PreAwake))]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">HiddenAugmentPatch</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">{</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Postfix</span><span class="p">(</span><span class="n">AugmentManager</span><span class="w"> </span><span class="n">__instance</span><span class="p">)</span>
