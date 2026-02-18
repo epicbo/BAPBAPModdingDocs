@@ -33,10 +33,10 @@ If there is no possible augment to pick for a specific augment slot, then one is
 Here's what the code could look like (I went with adding the augment to the _Starter_ pool).
 
 ```csharp
-[HarmonyPatch(typeof(PassiveManager), nameof(PassiveManager.PreAwake))]
+[HarmonyPatch(typeof(AugmentManager), nameof(AugmentManager.PreAwake))]
 public class HiddenAugmentPatch
 {
-    public static void Postfix(AugmentManager _instance)
+    public static void Postfix(AugmentManager __instance)
     {
         var passiveId = 247;
 
@@ -47,7 +47,7 @@ public class HiddenAugmentPatch
         var newAugment = passiveManager.library.passives[passiveId];
 
         // We need a new AugmentTree object, but we'll be lazy and just clone an existing one
-        var newAugmentTree = _instance.startingAugmentTrees[0].MemberwiseClone().Cast<AugmentManager.AugmentTree>();
+        var newAugmentTree = __instance.startingAugmentTrees[0].MemberwiseClone().Cast<AugmentManager.AugmentTree>();
 
         // Let's clear its children by replacing the value with an empty array. 
         newAugmentTree.childrenAugments = new Il2CppReferenceArray<AugmentManager.DependencyAugment>(0);
@@ -59,11 +59,11 @@ public class HiddenAugmentPatch
         // Note: since these fields are arrays (of type Il2CppStructArray<int>), you'll have to create a new one of 'length + 1',
         // copy the values from the old one, add the new passiveId, and then override the old one. 
         // I am using a helper I wrote for this.
-        _instance.allAugmentIds = Util.AppendIntArray(_instance.allAugmentIds, passiveId);
-        _instance.genericAugmentIds = Util.AppendIntArray(_instance.genericAugmentIds, passiveId);
+        __instance.allAugmentIds = Util.AppendIntArray(__instance.allAugmentIds, passiveId);
+        __instance.genericAugmentIds = Util.AppendIntArray(__instance.genericAugmentIds, passiveId);
 
         // Similar to above, but here we're adding our new augment tree to the starting augment tree pool.
-        _instance.startingAugmentTrees = Util.AppendReferenceArray(_instance.startingAugmentTrees, newAugmentTree);
+        __instance.startingAugmentTrees = Util.AppendReferenceArray(__instance.startingAugmentTrees, newAugmentTree);
     }
 }
 ```
